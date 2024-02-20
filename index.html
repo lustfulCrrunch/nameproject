@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Name Project</title>
+  </head>
+
+  <body>
+    <h1>Name Project</h1>
+    <audio controls crossorigin="anonymous">
+      <source src="bite.mp3" type="audio/mp3" />
+    </audio>
+  </body>
+  <script>
+    const audioElt = document.querySelector("audio");
+    const pre = document.querySelector("pre");
+    let audioCtx;
+
+    audioElt.addEventListener("play", () => {
+      if (!audioCtx) {
+        // Set up AudioContext
+        audioCtx = new AudioContext();
+
+        // Create a MediaElementAudioSourceNode
+        // Feed the HTMLMediaElement into it
+        const source = new MediaElementAudioSourceNode(audioCtx, {
+          mediaElement: audioElt,
+        });
+
+
+        // connect the AudioBufferSourceNode to the destination
+        source.connect(audioCtx.destination);
+      }
+    });
+  </script>
+
+  <style>
+    body{
+        color: white;
+        margin: 0;
+        padding: 0;
+        background: #262626;
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: center; 
+    }
+    h1{
+        font-size: 100px;
+    }
+    .main{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%)
+    }
+    ul{
+        display: flex;
+        position: absolute;
+        left: 50%;
+        top: 70%;
+        transform: translate(-50%, 0)
+    }
+    ul li{
+        list-style: none;
+    }
+    ul li a{
+        transition: .5s;
+        width: 80px;
+        height: 80px;
+        text-align: center;
+        line-height: 80px;
+        font-size: 35px;
+        display: block;
+        -webkit-animation-direction: normal;
+        -webkit-animation-duration: 22s;
+        -webkit-animation-iteration-count: infinite;
+        -webkit-animation-name: text;
+        -webkit-animation-timing-function: ease;
+    }
+    ul li a:hover{
+        font-size: 45px;
+    }
+
+    #particles-js{
+        background-size: cover;
+        height: 100%;
+        width: 100%;
+        position: fixed;
+        z-index: -1;
+    }
+    #date{
+        position: absolute;
+        font-size: 25px;
+    }
+  </style>
+</html>
